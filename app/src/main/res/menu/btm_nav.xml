@@ -4,18 +4,18 @@
         android:id="@+id/item_fragment1"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_map_24"
-        android:title="아이템1" />
+        android:title="map_frag" />
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_list_24"
-        android:title="아이템2"
+        android:title="list_frag"
         />
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="아이템3"
+        android:title="login_frag"
         />
 
 

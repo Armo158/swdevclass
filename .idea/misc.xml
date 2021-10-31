@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/azurp/Desktop/git/swdevclass/app/src/main/res/layout/activity_main.xml" value="0.33469202898550726" />
         <entry key="..\:/Users/azurp/Desktop/swdevclass/swdevclass/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/activity_aft_login.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.16757246376811594" />
+        <entry key="app/src/main/res/layout/fragment_2.xml" value="0.1578125" />
+        <entry key="app/src/main/res/layout/fragment_3.xml" value="0.25" />
         <entry key="app/src/main/res/menu/btm_nav.xml" value="0.22395833333333334" />
       </map>
     </option>
