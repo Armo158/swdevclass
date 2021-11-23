@@ -25,7 +25,7 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
 
-public class Fragment1 extends Fragment implements OnMapReadyCallback {
+public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActivity.onBackPressedListener{
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private MapView mapView;
@@ -225,4 +225,14 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback {
                 requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onBackPressed() {
+        gotomain();
+    }
+
+    private void gotomain() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().remove(Fragment1.this).commit();
+        fragmentManager.popBackStack();
+    }
 }

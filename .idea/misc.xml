@@ -10,6 +10,9 @@
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.16757246376811594" />
         <entry key="app/src/main/res/layout/fragment_2.xml" value="0.1578125" />
         <entry key="app/src/main/res/layout/fragment_3.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_fitness_list_1.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/fragment_fitness_list_1_list.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
         <entry key="app/src/main/res/menu/btm_nav.xml" value="0.22395833333333334" />
       </map>
     </option>

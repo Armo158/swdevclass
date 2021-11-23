@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 /**
@@ -34,7 +36,7 @@ import java.util.concurrent.Executor;
  * Use the {@link Fragment3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment3 extends Fragment {
+public class Fragment3 extends Fragment implements MainActivity.onBackPressedListener {
 
     public Fragment3() {
         // Required empty public constructor
@@ -64,9 +66,7 @@ public class Fragment3 extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(getActivity(), AftLoginAct.class);
-            startActivity(intent);
-            getActivity().finish();
+            ((MainActivity)getActivity()).replaceFragment(FitnessList_1.newInstance());
         }
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -130,9 +130,18 @@ public class Fragment3 extends Fragment {
 
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
-            Intent intent = new Intent(getActivity(), AftLoginAct.class);
-            startActivity(intent);
+            ((MainActivity)getActivity()).replaceFragment(FitnessList_1.newInstance());
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        gotomain();
+    }
+
+    private void gotomain() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().remove(Fragment3.this).commit();
+        fragmentManager.popBackStack();
+    }
 }
