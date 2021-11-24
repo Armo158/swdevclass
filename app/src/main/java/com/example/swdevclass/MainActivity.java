@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     //bottom Navigation view
     BottomNavigationView bottomNavigationView;
     //realtime database
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
     private ArrayList<FitnessCenter> arrayList; //db로부터 내용을 받아와서 넣는곳
 
     @Override
@@ -35,15 +37,15 @@ public class MainActivity extends AppCompatActivity {
         //db관련
         arrayList = new ArrayList<>();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("fitness"); //DB table
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("fitness"); //DB table
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot Datasnapshot) {
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear();// 기존배열 리스트가 존재하지 않게 초기화
-                for(DataSnapshot snapshot: Datasnapshot.getChildren()) {//반복문으로 데이터 list를 추출해냄
+                for(DataSnapshot snapshot: datasnapshot.getChildren()) {//반복문으로 데이터 list를 추출해냄
                     FitnessCenter fitnessCenter = snapshot.getValue(FitnessCenter.class);//만들어뒀던 fitness 객체에 데이터 넣
                     arrayList.add(fitnessCenter); //담은 데이터들을 배열리스트에 넣음
 
@@ -56,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        bottomNavigationView = findViewById(R.id.bottomNavi); //처음화면
+        bottomNavigationView = findViewById(R.id.bottomNavi); //네비게이션
 
         getSupportFragmentManager().beginTransaction().add(R.id.layout_main, new Fragment1()).commit();
         //FrameLayout에 fragment.xml 띄우기
@@ -107,5 +108,9 @@ public class MainActivity extends AppCompatActivity {
         }
         lastTimeBackPressed = System.currentTimeMillis();
         Toast.makeText(this, "'뒤로'버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+    }
+    //arraylist 전달
+    public ArrayList<FitnessCenter> getArrayList(){
+        return arrayList;
     }
 }

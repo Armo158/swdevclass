@@ -14,7 +14,7 @@ public class FitnessCenter {
 
 
     FitnessCenter(){}
-    FitnessCenter(double lat, double log, String manager, String phonenumber,String price, String etc, String time,
+    FitnessCenter(double lat, double log, String manager, String phonenumber, String price, String etc, String time,
                   String name, String event, String address){
         this.lat = lat;
         this.log = log;
@@ -27,34 +27,84 @@ public class FitnessCenter {
         this.event = event;
         this.address = address;
     }
-    public double getLat(){
+
+    public double getLat() {
         return lat;
     }
-    public double getLog(){
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLog() {
         return log;
     }
-    public String getManager(){
+
+    public void setLog(double log) {
+        this.log = log;
+    }
+
+    public String getManager() {
         return manager;
     }
-    public String getPhonenumber(){
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    public String getPhonenumber() {
         return phonenumber;
     }
-    public String getPrice(){
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getPrice() {
         return price;
     }
-    public String getEtc(){
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getEtc() {
         return etc;
     }
-    public String getTime(){
+
+    public void setEtc(String etc) {
+        this.etc = etc;
+    }
+
+    public String getTime() {
         return time;
     }
-    public String getEvent(){
-        return event;
+
+    public void setTime(String time) {
+        this.time = time;
     }
-    public String getAddress(){
-        return address;
-    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
