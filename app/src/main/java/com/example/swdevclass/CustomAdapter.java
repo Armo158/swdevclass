@@ -1,6 +1,7 @@
 package com.example.swdevclass;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,25 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+        final ViewHolder viewHolder;
+
+        if(convertView == null){
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            convertView = layoutInflater.inflate(R.layout.row_item, parent, false);
+        }
+
+        viewHolder = new ViewHolder();
+        viewHolder.tv_name = (TextView) convertView.findViewById(R.id.textView_name);
+        viewHolder.tv_summary = (TextView) convertView.findViewById(R.id.textView_summary);
+        //viewHolder.iv_thumb = (ImageView) convertView.findViewById(R.id.imageView_thumb);
+
+        final FitnessCenter fitness = (FitnessCenter) list.get(position);
+        viewHolder.tv_name.setText(fitness.getName());
+        viewHolder.tv_summary.setText(fitness.getEtc());
+        //Glide.with(context).load(fitness.getphoto_url).centerCrop().apply(new RequestOption().override(250, 350)).
+        //into(viewHolder.iv_thumb);
+        viewHolder.tv_name.setTag(fitness.getName());
+
+        return convertView;
     }
 }

@@ -121,8 +121,7 @@ public class Fragment3 extends Fragment implements MainActivity.onBackPressedLis
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            //Snackbar.make(v.findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
+                            Snackbar.make(v.findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });

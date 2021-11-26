@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,14 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).getArrayList();
+
+        //test code
+        /*
         FitnessCenter fit = arrayList.get(0);
         String a = fit.getName();
         String b = fit.getAddress();
         Log.w("test",a+", "+ b);
+        */
 
         View rootView = inflater.inflate(R.layout.fragment_2, container, false);
 
@@ -38,7 +43,6 @@ public class Fragment2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = (String) view.findViewById(R.id.textView_name).getTag().toString();
-                Toast.makeText(getContext(), "clicked: "+i +" "+selectedItem, Toast.LENGTH_SHORT).show();
             }
         });
 
