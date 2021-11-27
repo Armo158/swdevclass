@@ -1,5 +1,7 @@
 package com.example.swdevclass;
 
+import static android.os.SystemClock.sleep;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private ArrayList<FitnessCenter> arrayList; //db로부터 내용을 받아와서 넣는곳
+    private long lastTimeBackPressed; //onbackpressed와 관련
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,17 +54,18 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.add(fitnessCenter); //담은 데이터들을 배열리스트에 넣음
 
                 }
+                getSupportFragmentManager().beginTransaction().add(R.id.layout_main, new Fragment1()).commit();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Data failed", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().add(R.id.layout_main, new Fragment1()).commit();
             }
         });
 
         bottomNavigationView = findViewById(R.id.bottomNavi); //네비게이션
 
-        getSupportFragmentManager().beginTransaction().add(R.id.layout_main, new Fragment1()).commit();
         //FrameLayout에 fragment.xml 띄우기
 
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.item_fragment3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment3()).commit();
+                        break;
                 }
                 return;
             }
@@ -91,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
     public interface onBackPressedListener{
         void onBackPressed();
     }
-    private long lastTimeBackPressed;
-
     @Override
     public void onBackPressed() {
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
@@ -112,5 +116,15 @@ public class MainActivity extends AppCompatActivity {
     //arraylist 전달
     public ArrayList<FitnessCenter> getArrayList(){
         return arrayList;
+    }
+    //arraylist 값 설정
+    public void  setArrayList(ArrayList<FitnessCenter> arrayList){
+        this.arrayList = arrayList;
+        return;
+    }
+    //arraylist 값 DB로 보내기
+    public void setDBFitnessValue(ArrayList<FitnessCenter> arrayList){
+        myRef.setValue(arrayList);
+        return;
     }
 }

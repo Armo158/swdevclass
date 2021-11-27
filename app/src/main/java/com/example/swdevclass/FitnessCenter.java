@@ -1,8 +1,8 @@
 package com.example.swdevclass;
 
 public class FitnessCenter {
-    private double lat;
-    private double log;
+    private double latitude;
+    private double longitude;
     private String manager;
     private String phonenumber;
     private String price;
@@ -14,10 +14,10 @@ public class FitnessCenter {
 
 
     FitnessCenter(){}
-    FitnessCenter(double lat, double log, String manager, String phonenumber, String price, String etc, String time,
+    FitnessCenter(double latitude, double longitude, String manager, String phonenumber, String price, String etc, String time,
                   String name, String event, String address){
-        this.lat = lat;
-        this.log = log;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.manager = manager;
         this.phonenumber = phonenumber;
         this.price = price;
@@ -28,21 +28,17 @@ public class FitnessCenter {
         this.address = address;
     }
 
-    public double getLat() {
-        return lat;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public double getLog() {
-        return log;
-    }
+    public double getLongitude() { return longitude; }
 
-    public void setLog(double log) {
-        this.log = log;
-    }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
 
     public String getManager() {
         return manager;
