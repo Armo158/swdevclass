@@ -2,6 +2,7 @@ package com.example.swdevclass;
 
 import static android.os.SystemClock.sleep;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -34,10 +35,15 @@ public class MainActivity extends AppCompatActivity {
     private long lastTimeBackPressed; //onbackpressed와 관련
 
 
+    private Thread splashThread;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         //db관련
         arrayList = new ArrayList<>();
 

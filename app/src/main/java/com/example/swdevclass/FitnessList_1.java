@@ -15,6 +15,12 @@ import android.view.ViewGroup;
 
 import com.example.swdevclass.placeholder.PlaceholderContent;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
 /**
  * A fragment representing a list of Items.
  */
@@ -79,4 +85,5 @@ public class FitnessList_1 extends Fragment implements MainActivity.onBackPresse
         fragmentManager.beginTransaction().remove(FitnessList_1.this).commit();
         fragmentManager.popBackStack();
     }
+
 }
