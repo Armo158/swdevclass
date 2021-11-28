@@ -1,6 +1,5 @@
-package com.example.swdevclass;
+package com.example.swdevclass.FragmentFile;
 
-import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,13 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.swdevclass.fitness.FitnessCenter;
+import com.example.swdevclass.MainActivity;
+import com.example.swdevclass.R;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.LocationTrackingMode;
@@ -33,7 +33,7 @@ import com.naver.maps.map.widget.LocationButtonView;
 import java.util.ArrayList;
 
 
-public class Fragment1 extends Fragment implements OnMapReadyCallback{
+public class Fragment_Map extends Fragment implements OnMapReadyCallback{
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private MapView mapView;
@@ -42,10 +42,10 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback{
     private LocationButtonView locationButtonView;
     CameraPosition cameraPosition;
 
-    public Fragment1(){}
+    public Fragment_Map(){}
 
-    public static Fragment1 newInstance(){
-        Fragment1 fragment = new Fragment1();
+    public static Fragment_Map newInstance(){
+        Fragment_Map fragment = new Fragment_Map();
         return fragment;
     }
 
@@ -82,7 +82,7 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_1,
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_map,
                 container, false);
 
         mapView = (MapView) rootView.findViewById(R.id.navermap);
@@ -166,4 +166,8 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback{
         super.onRequestPermissionsResult(
                 requestCode, permissions, grantResults);
     }
+
+
+
+
 }

@@ -1,11 +1,10 @@
-package com.example.swdevclass;
+package com.example.swdevclass.FragmentFile;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.swdevclass.MainActivity;
+import com.example.swdevclass.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,21 +29,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.util.Objects;
-import java.util.concurrent.Executor;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment3#newInstance} factory method to
+ * Use the {@link Fragment_Login#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment3 extends Fragment{
+public class Fragment_Login extends Fragment{
 
-    public Fragment3() {
+    public Fragment_Login() {
         // Required empty public constructor
     }
-    public static Fragment3 newInstance(String param1, String param2) {
-        Fragment3 fragment = new Fragment3();
+    public static Fragment_Login newInstance(String param1, String param2) {
+        Fragment_Login fragment = new Fragment_Login();
         return fragment;
     }
 
@@ -59,7 +57,7 @@ public class Fragment3 extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_3, container, false);
+        v = inflater.inflate(R.layout.fragment_login, container, false);
         TextView tvContents = (TextView)v.findViewById(R.id.tv_contents);
         si_b = v.findViewById(R.id.si_b);
 
@@ -131,7 +129,7 @@ public class Fragment3 extends Fragment{
 
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
-            ((MainActivity)getActivity()).replaceFragment(FitnessList_1.newInstance());
+            ((MainActivity)getActivity()).replaceFragment(Fragment_MyFitnessList.newInstance());
         }
     }
 }

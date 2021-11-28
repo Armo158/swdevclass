@@ -13,9 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Swdevclass">
-        <activity
-            android:name=".AftLoginAct"
-            android:exported="true" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

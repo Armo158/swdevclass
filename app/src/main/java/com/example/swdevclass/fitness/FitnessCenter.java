@@ -1,4 +1,4 @@
-package com.example.swdevclass;
+package com.example.swdevclass.fitness;
 
 public class FitnessCenter {
     private double latitude;

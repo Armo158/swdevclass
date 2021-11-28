@@ -1,4 +1,4 @@
-package com.example.swdevclass;
+package com.example.swdevclass.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
+import com.example.swdevclass.fitness.FitnessCenter;
+import com.example.swdevclass.R;
 
 import java.util.ArrayList;
 import java.util.List;

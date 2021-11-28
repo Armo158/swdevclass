@@ -6,6 +6,7 @@
         <entry key="..\:/Users/azurp/Desktop/git/swdevclass/app/src/main/res/layout/activity_main.xml" value="0.33469202898550726" />
         <entry key="..\:/Users/azurp/Desktop/swdevclass/swdevclass/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2972222222222222" />
+        <entry key="app/src/main/res/drawable/bg_fading_edge.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2972222222222222" />
@@ -15,9 +16,12 @@
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_2.xml" value="0.1578125" />
         <entry key="app/src/main/res/layout/fragment_3.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment__edit.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment__more_info.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/fragment_fitness_list_1.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_fitness_list_1_list.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_slider.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/row_item.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/menu/btm_nav.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2972222222222222" />
