@@ -36,7 +36,7 @@ import java.util.concurrent.Executor;
  * Use the {@link Fragment3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment3 extends Fragment implements MainActivity.onBackPressedListener {
+public class Fragment3 extends Fragment{
 
     public Fragment3() {
         // Required empty public constructor
@@ -65,9 +65,11 @@ public class Fragment3 extends Fragment implements MainActivity.onBackPressedLis
 
 
         mAuth = FirebaseAuth.getInstance();
+        /*
         if (mAuth.getCurrentUser() != null) {
             ((MainActivity)getActivity()).replaceFragment(FitnessList_1.newInstance());
         }
+         */
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("381296291930-mbo5tiuqb30r10npq4qd99rjdt68on39.apps.googleusercontent.com")
@@ -131,16 +133,5 @@ public class Fragment3 extends Fragment implements MainActivity.onBackPressedLis
         if (user != null) {
             ((MainActivity)getActivity()).replaceFragment(FitnessList_1.newInstance());
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        gotomain();
-    }
-
-    private void gotomain() {
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction().remove(Fragment3.this).commit();
-        fragmentManager.popBackStack();
     }
 }

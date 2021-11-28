@@ -1,10 +1,6 @@
 package com.example.swdevclass;
 
-import static android.os.SystemClock.sleep;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -21,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     //realtime database
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    private DatabaseReference managerRef;
     private ArrayList<FitnessCenter> arrayList; //db로부터 내용을 받아와서 넣는곳
     private long lastTimeBackPressed; //onbackpressed와 관련
 
@@ -49,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("fitness"); //DB table
+        managerRef = database.getReference("manger");
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot: datasnapshot.getChildren()) {//반복문으로 데이터 list를 추출해냄
                     FitnessCenter fitnessCenter = snapshot.getValue(FitnessCenter.class);//만들어뒀던 fitness 객체에 데이터 넣
                     arrayList.add(fitnessCenter); //담은 데이터들을 배열리스트에 넣음
-
                 }
                 getSupportFragmentManager().beginTransaction().add(R.id.layout_main, new Fragment1()).commit();
             }
@@ -74,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         //FrameLayout에 fragment.xml 띄우기
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_fragment1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment1()).commit();
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment3()).commit();
                         break;
                 }
-                return;
+                return true;
             }
         });
 

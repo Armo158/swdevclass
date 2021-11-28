@@ -1,5 +1,6 @@
 package com.example.swdevclass;
 
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,12 +33,13 @@ import com.naver.maps.map.widget.LocationButtonView;
 import java.util.ArrayList;
 
 
-public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActivity.onBackPressedListener{
+public class Fragment1 extends Fragment implements OnMapReadyCallback{
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private MapView mapView;
     private ArrayList<FitnessCenter> arrayList;
     private ArrayList<Marker> markers = new ArrayList<>();
+    private LocationButtonView locationButtonView;
     CameraPosition cameraPosition;
 
     public Fragment1(){}
@@ -58,8 +60,6 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActiv
                 new LatLng(35.154755, 128.105026), // 대상 지점
                 14
         );
-
-
 
         NaverMapOptions options = new NaverMapOptions()
                 .mapType(NaverMap.MapType.Basic)
@@ -86,6 +86,7 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActiv
                 container, false);
 
         mapView = (MapView) rootView.findViewById(R.id.navermap);
+
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
@@ -100,10 +101,15 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActiv
         arrayList = ((MainActivity)getActivity()).getArrayList();
 
         UiSettings uiSettings = naverMap.getUiSettings();
-        uiSettings.setLocationButtonEnabled(false);
+        uiSettings.setLocationButtonEnabled(true);
 
-        LocationButtonView locationButtonView = getView().findViewById(R.id.location_button);
+
+        /* //errror
+        locationButtonView = null;
+        locationButtonView = getView().findViewById(R.id.location_button);
         locationButtonView.setMap(naverMap);
+        */
+
 
         naverMap.setCameraPosition(cameraPosition);
         //마커 초기화
@@ -159,16 +165,5 @@ public class Fragment1 extends Fragment implements OnMapReadyCallback, MainActiv
         }
         super.onRequestPermissionsResult(
                 requestCode, permissions, grantResults);
-    }
-
-    @Override
-    public void onBackPressed() {
-        gotomain();
-    }
-
-    private void gotomain() {
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction().remove(Fragment1.this).commit();
-        fragmentManager.popBackStack();
     }
 }
