@@ -103,14 +103,6 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(true);
 
-
-        /* //errror
-        locationButtonView = null;
-        locationButtonView = getView().findViewById(R.id.location_button);
-        locationButtonView.setMap(naverMap);
-        */
-
-
         naverMap.setCameraPosition(cameraPosition);
         //마커 초기화
         markers.clear();;

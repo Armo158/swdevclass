@@ -3,6 +3,7 @@ package com.example.swdevclass.FragmentFile;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,13 @@ public class Fragment_MyFitnessList extends Fragment{
         customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = (String) view.findViewById(R.id.textView_name).getTag().toString();
+                Bundle bundle = new Bundle();
+                bundle.putInt("Edit", i);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Fragment_MoreInfo fragment_moreInfo = new Fragment_MoreInfo();
+                fragment_moreInfo.setArguments(bundle);
+                transaction.replace(R.id.layout_main, fragment_moreInfo);
+                transaction.commit();
             }
         });
 

@@ -18,9 +18,14 @@
         <entry key="app/src/main/res/layout/fragment_3.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment__edit.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/fragment__more_info.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/fragment_fitness_list_1.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_fitness_list_1_list.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.20364583333333333" />
+        <entry key="app/src/main/res/layout/fragment_more_info.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/item_slider.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/row_item.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/menu/btm_nav.xml" value="0.22395833333333334" />

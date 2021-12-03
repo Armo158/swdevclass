@@ -88,7 +88,7 @@
         <LinearLayout
             android:id="@+id/address"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,16 +103,16 @@
                 android:layout_height="wrap_content"
                 android:text="주소 : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="주소" />
+                android:layout_height="wrap_content"
+                android:text="ddddddddddddddd" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/number"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:text="☎ : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -139,7 +139,7 @@
         <LinearLayout
             android:id="@+id/price"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:text="가격 : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -165,7 +165,7 @@
         <LinearLayout
             android:id="@+id/time"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:text="영업시간 : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -191,7 +191,7 @@
         <LinearLayout
             android:id="@+id/event"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:text="이벤트 : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -216,7 +216,7 @@
         <LinearLayout
             android:id="@+id/more"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:text="+ : " />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />

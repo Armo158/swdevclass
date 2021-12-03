@@ -34,7 +34,6 @@ public class Fragment_List extends Fragment {
         customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = (String) view.findViewById(R.id.textView_name).getTag().toString();
                 Bundle bundle = new Bundle();
                 bundle.putInt("MoreInfo", i);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
