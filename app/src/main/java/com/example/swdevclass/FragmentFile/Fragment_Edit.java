@@ -73,7 +73,7 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         v = (ViewGroup)inflater.inflate(R.layout.fragment_edit, container, false);
         indexnum = getArguments().getInt("Editting");
-        fitnessCenter = ((MainActivity)getActivity()).getFitnessCenter(indexnum);
+        fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(indexnum);
 
         sliderViewPager = v.findViewById(R.id.sliderViewPager);
         layoutIndicator = v.findViewById(R.id.layoutIndicators);
@@ -118,7 +118,8 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
                         price_id.getText().toString(), time_id.getText().toString(), event_id.getText().toString(),
                         more_id.getText().toString());
 
-                ((MainActivity)getActivity()).setFitnessCenter(fitnessCenter, indexnum);
+                ((MainActivity)getActivity()).fitnessArrayListControl.setFitnessCenter(fitnessCenter, indexnum);
+                ((MainActivity)getActivity()).fitnessArrayListControl.setDBFitnessValue();
                 Toast.makeText(v.getContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });

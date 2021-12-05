@@ -103,13 +103,15 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.None);
 
-        arrayList = ((MainActivity)getActivity()).getArrayList();
+        arrayList = ((MainActivity)getActivity()).fitnessArrayListControl.getArrayList();
 
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(true);
 
         naverMap.setCameraPosition(cameraPosition);
         //마커 초기화
+
+
         markers.clear();;
         //마커 값 설정
         for(FitnessCenter fitnessCenter: arrayList){
@@ -155,6 +157,10 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
                 return true;
             });
         }
+
+    }
+
+    private void setMarkers(ArrayList<Marker> markers) {
 
     }
 

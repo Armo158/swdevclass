@@ -1,0 +1,78 @@
+package com.example.swdevclass;
+
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.example.swdevclass.FragmentFile.Fragment_Map;
+import com.example.swdevclass.fitness.FitnessCenter;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class FitnessArrayListControl {
+    private ArrayList<FitnessCenter> arrayList;
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private DatabaseReference managerRef;
+
+    FitnessArrayListControl(){
+        arrayList = new ArrayList<>();
+        FitnessCenter fitnessCenter = new FitnessCenter();
+        arrayList.add(fitnessCenter);
+    }
+    public boolean setArrayListtoDB(){
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("fitness"); //DB table
+        managerRef = database.getReference("manger");
+
+        final boolean[] a = new boolean[1];
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                arrayList.clear();// 기존배열 리스트가 존재하지 않게 초기화
+                for(DataSnapshot snapshot: datasnapshot.getChildren()) {//반복문으로 데이터 list를 추출해냄
+                    FitnessCenter fitnessCenter = snapshot.getValue(FitnessCenter.class);//만들어뒀던 fitness 객체에 데이터 넣
+                    arrayList.add(fitnessCenter); //담은 데이터들을 배열리스트에 넣음
+                }
+               a[0] = true;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                a[0] = false;
+            }
+        });
+        return a[0];
+    }
+    public void setArrayList(ArrayList<FitnessCenter> arrayList){
+        this.arrayList = arrayList;
+        return;
+    }
+    public ArrayList<FitnessCenter> getArrayList(){
+        return arrayList;
+    }
+    //arraylist 값 설정
+    public FitnessCenter getFitnessCenter(int i){
+        return arrayList.get(i);
+    }
+    public void setFitnessCenter(FitnessCenter fitnessCenter, int i){
+        arrayList.set(i, fitnessCenter);
+        return;
+    }
+    //arraylist 값 DB로 보내기
+    public void setDBFitnessValue(){
+        myRef.setValue(arrayList);
+        return;
+    }
+
+}

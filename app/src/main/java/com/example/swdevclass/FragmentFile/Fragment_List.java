@@ -25,7 +25,7 @@ public class Fragment_List extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).getArrayList();
+        ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).fitnessArrayListControl.getArrayList();
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
         customListView = (ListView) rootView.findViewById(R.id.listView_custom);

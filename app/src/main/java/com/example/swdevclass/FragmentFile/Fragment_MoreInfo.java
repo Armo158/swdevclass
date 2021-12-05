@@ -130,7 +130,7 @@ public class Fragment_MoreInfo extends Fragment {
             getArguments().clear();
         }
         
-        FitnessCenter fitnessCenter = ((MainActivity)getActivity()).getFitnessCenter(a);
+        FitnessCenter fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(a);
         
         sliderViewPager = (ViewPager2) view.findViewById(R.id.sliderViewPager);
         layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicators);

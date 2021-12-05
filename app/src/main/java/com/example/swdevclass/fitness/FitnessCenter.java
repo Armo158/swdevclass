@@ -13,8 +13,8 @@ public class FitnessCenter {
     private String address;
 
 
-    FitnessCenter(){}
-    FitnessCenter(double latitude, double longitude, String manager, String phonenumber, String price, String etc, String time,
+    public FitnessCenter(){}
+    public FitnessCenter(double latitude, double longitude, String manager, String phonenumber, String price, String etc, String time,
                   String name, String event, String address){
         this.latitude = latitude;
         this.longitude = longitude;
