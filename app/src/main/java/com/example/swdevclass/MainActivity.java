@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<FitnessCenter> arrayList; //db로부터 내용을 받아와서 넣는곳
     private long lastTimeBackPressed; //onbackpressed와 관련
 
-
     private Thread splashThread;
 
     @Override
@@ -49,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
         managerRef = database.getReference("manger");
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear();// 기존배열 리스트가 존재하지 않게 초기화
                 for(DataSnapshot snapshot: datasnapshot.getChildren()) {//반복문으로 데이터 list를 추출해냄
                     FitnessCenter fitnessCenter = snapshot.getValue(FitnessCenter.class);//만들어뒀던 fitness 객체에 데이터 넣
@@ -125,7 +123,14 @@ public class MainActivity extends AppCompatActivity {
         return arrayList;
     }
     //arraylist 값 설정
-    public FitnessCenter getFitnessCenter(int i){return arrayList.get(i);}
+    public FitnessCenter getFitnessCenter(int i){
+        return arrayList.get(i);
+    }
+    public void setFitnessCenter(FitnessCenter fitnessCenter, int i){
+        arrayList.set(i, fitnessCenter);
+        setDBFitnessValue(arrayList);
+        return;
+    }
     public void  setArrayList(ArrayList<FitnessCenter> arrayList){
         this.arrayList = arrayList;
         return;

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,10 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
     public static Fragment_Map newInstance(){
         Fragment_Map fragment = new Fragment_Map();
         return fragment;
+    }
+
+    public ArrayList<Marker> getMarkers(){
+        return markers;
     }
 
     @Override
@@ -137,9 +142,13 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
                     @Override
                     public boolean onClick(@NonNull Overlay overlay) {
                         int a = markers.indexOf(marker);
-                        Log.w("test", String.valueOf(a));
-                        Log.w("test", String.valueOf(arrayList.size()));
-                        Log.w("test", String.valueOf(markers.size()));
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("MoreInfo", a);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment_MoreInfo fragment_moreInfo = new Fragment_MoreInfo();
+                        fragment_moreInfo.setArguments(bundle);
+                        transaction.replace(R.id.layout_main, fragment_moreInfo);
+                        transaction.commit();
                         return false;
                     }
                 });

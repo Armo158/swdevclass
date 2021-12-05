@@ -27,6 +27,12 @@ public class FitnessCenter {
         this.event = event;
         this.address = address;
     }
+    public void editFitnessCenter(String address, String phonenumber, String price, String time, String event, String etc){
+        this.address = address; this.phonenumber = phonenumber;
+        this.price = price; this.time = time;
+        this.event = event; this.etc = etc;
+    }
+
 
     public double getLatitude() {
         return latitude;

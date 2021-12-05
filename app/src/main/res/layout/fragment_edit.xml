@@ -7,12 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/top_layout"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:orientation="horizontal"
@@ -24,6 +22,7 @@
             app:layout_constraintVertical_bias="0.6">
 
             <Button
+                android:id="@+id/button_cancel"
                 android:layout_width="70sp"
                 android:layout_height="40sp"
                 android:text="취소" />
@@ -34,6 +33,7 @@
                 android:layout_weight="1" />
 
             <Button
+                android:id="@+id/button_edit"
                 android:layout_width="70sp"
                 android:layout_height="40sp"
                 android:layout_gravity="right"
@@ -104,6 +104,7 @@
                 android:text="주소 : " />
 
             <EditText
+                android:id="@+id/addressEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ddddddddddddddd" />
@@ -128,6 +129,7 @@
                 android:text="☎ : " />
 
             <EditText
+                android:id="@+id/numberEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -155,6 +157,7 @@
                 android:text="가격 : " />
 
             <EditText
+                android:id="@+id/priceEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -181,6 +184,7 @@
                 android:text="영업시간 : " />
 
             <EditText
+                android:id="@+id/timeEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -207,6 +211,7 @@
                 android:text="이벤트 : " />
 
             <EditText
+                android:id="@+id/eventEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
@@ -232,12 +237,22 @@
                 android:text="+ : " />
 
             <EditText
+                android:id="@+id/moreEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ㅅㅅ" />
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="409dp"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/more"></LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
