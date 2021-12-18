@@ -49,6 +49,10 @@ public class Fragment_MyFitnessList extends Fragment{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Edit", i);
+
+                Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
+                MainActivity.fragmentStack.push(currentFragment);
+
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Fragment_MoreInfo fragment_moreInfo = new Fragment_MoreInfo();
                 fragment_moreInfo.setArguments(bundle);

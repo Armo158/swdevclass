@@ -1,5 +1,7 @@
 package com.example.swdevclass.FragmentFile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -26,6 +28,7 @@ public class Fragment_MoreInfo extends Fragment {
 
     private ViewPager2 sliderViewPager;
     private LinearLayout layoutIndicator;
+    private SharedPreferences preferences;
 
     private String[] images = new String[] {
             "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",
@@ -87,49 +90,69 @@ public class Fragment_MoreInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //preference
+        preferences = this.getActivity().getSharedPreferences("MoreInfo", Context.MODE_PRIVATE);
         // Inflate the layout for this fragment
+
         int a = -1;
+
         View view = inflater.inflate(R.layout.fragment_more_info,container,false);
         Button button_cancel = (Button)view.findViewById(R.id.button_cancel);
         Button button_edit = (Button)view.findViewById(R.id.button_edit);
         if(getArguments() != null){
+            SharedPreferences.Editor editor = preferences.edit();
+
             if(getArguments().get("MoreInfo") != null) {
                 a = getArguments().getInt("MoreInfo");
 
                 button_cancel.setVisibility(view.INVISIBLE);
                 button_edit.setVisibility(view.INVISIBLE);
 
+                editor.putInt("MoreInfo", a);
+
             }
             else if(getArguments().get("Edit") != null){
                 a = getArguments().getInt("Edit");
                 Log.w("test", String.valueOf(a));
 
-                button_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-
-                int finalA = a;
-                button_edit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("Editting", finalA);
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        Fragment_Edit fragment_edit = new Fragment_Edit();
-                        fragment_edit.setArguments(bundle);
-                        transaction.replace(R.id.layout_main, fragment_edit);
-                        transaction.commit();
-                    }
-                });
-
-
+                editor.putInt("MoreInfo", a);
             }
             getArguments().clear();
+            editor.commit();
         }
-        
+
+        a = preferences.getInt("MoreInfo", a);
+
+
+        //취소버튼
+        button_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).onBackPressed();
+            }
+        });
+        //수정하기 버튼
+        int finalA1 = a;
+        button_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("Editting", finalA1);
+
+                Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
+                MainActivity.fragmentStack.push(currentFragment);
+
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Fragment_Edit fragment_edit = new Fragment_Edit();
+                fragment_edit.setArguments(bundle);
+                transaction.replace(R.id.layout_main, fragment_edit);
+                transaction.commit();
+            }
+        });
+
+
+
+
         FitnessCenter fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(a);
         
         sliderViewPager = (ViewPager2) view.findViewById(R.id.sliderViewPager);

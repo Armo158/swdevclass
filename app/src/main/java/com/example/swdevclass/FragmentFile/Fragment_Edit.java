@@ -111,6 +111,13 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
         btn_edit = (Button)v.findViewById(R.id.button_edit);
         btn_cancel = (Button)v.findViewById(R.id.button_cancel);
 
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).onBackPressed();
+            }
+        });
+
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +128,9 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
                 ((MainActivity)getActivity()).fitnessArrayListControl.setFitnessCenter(fitnessCenter, indexnum);
                 ((MainActivity)getActivity()).fitnessArrayListControl.setDBFitnessValue();
                 Toast.makeText(v.getContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+                ((MainActivity)getActivity()).onBackPressed();
+
             }
         });
 

@@ -140,6 +140,10 @@ public class Fragment_Login extends Fragment{
 
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null && ((MainActivity)getActivity()).fitnessArrayListControl.isExistEmail(user.getEmail())) {
+
+            Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
+            MainActivity.fragmentStack.push(currentFragment);
+
             ((MainActivity)getActivity()).replaceFragment(Fragment_MyFitnessList.newInstance());
         }
         else{

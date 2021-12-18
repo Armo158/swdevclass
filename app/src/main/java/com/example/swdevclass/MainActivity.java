@@ -79,7 +79,21 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.layout_main, fragment).commit();
-    }/*
+    }
+    @Override
+    public void onBackPressed(){
+        if(!fragmentStack.isEmpty()){
+            Fragment nextFragment = fragmentStack.pop();
+            fragmentManager.beginTransaction().replace(R.id.layout_main, nextFragment).commit();
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
+
+
+
+    /*
     public interface OnBackPressedListener{
         void onBackPressed();
     }

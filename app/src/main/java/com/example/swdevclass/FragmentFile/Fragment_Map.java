@@ -147,7 +147,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
                         Bundle bundle = new Bundle();
                         bundle.putInt("MoreInfo", a);
 
-                        Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.navermap);
+                        Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
                         MainActivity.fragmentStack.push(currentFragment);
 
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
