@@ -23,20 +23,15 @@ import com.example.swdevclass.R;
 import com.example.swdevclass.adapter.ImageSliderAdapter;
 import com.example.swdevclass.fitness.FitnessCenter;
 
+import java.util.ArrayList;
+
 
 public class Fragment_MoreInfo extends Fragment {
 
     private ViewPager2 sliderViewPager;
     private LinearLayout layoutIndicator;
     private SharedPreferences preferences;
-
-    private String[] images = new String[] {
-            "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/11/04/15/29/coffee-beans-5712780_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/03/08/21/41/landscape-4913841_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/09/02/18/03/girl-5539094_1280.jpg",
-            "https://cdn.pixabay.com/photo/2014/03/03/16/15/mosque-279015_1280.jpg"
-    };
+    private ArrayList<String> picture;
 
     public Fragment_MoreInfo() {
         // Required empty public constructor
@@ -151,15 +146,14 @@ public class Fragment_MoreInfo extends Fragment {
         });
 
 
-
-
         FitnessCenter fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(a);
+        picture = fitnessCenter.getPicture();
         
         sliderViewPager = (ViewPager2) view.findViewById(R.id.sliderViewPager);
         layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicators);
 
         sliderViewPager.setOffscreenPageLimit(1);
-        sliderViewPager.setAdapter(new ImageSliderAdapter(getContext(), images));
+        sliderViewPager.setAdapter(new ImageSliderAdapter(getContext(), picture));
 
         sliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -184,7 +178,7 @@ public class Fragment_MoreInfo extends Fragment {
         eventText.setText(fitnessCenter.getEvent());
         etcText.setText(fitnessCenter.getEtc());
 
-        setupIndicators(images.length);
+        setupIndicators(picture.size());
 
         return view;
     }

@@ -16,6 +16,7 @@ import com.example.swdevclass.MainActivity;
 import com.example.swdevclass.R;
 import com.example.swdevclass.adapter.CustomAdapter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Fragment_MyFitnessList extends Fragment{
@@ -37,18 +38,30 @@ public class Fragment_MyFitnessList extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).fitnessArrayListControl.getArrayList();
+        ArrayList<FitnessCenter> myFitnessList = new ArrayList<>();
+
+        String user = getArguments().getString("User");
+
+        for(FitnessCenter fitnessCenter: arrayList){
+            if(fitnessCenter.getManager().equals(user)){
+                myFitnessList.add(fitnessCenter);
+            }
+        }
 
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
         customListView = (ListView) rootView.findViewById(R.id.listView_custom);
-        customAdapter = new CustomAdapter(getContext(), arrayList);
+        customAdapter = new CustomAdapter(getContext(), myFitnessList);
         customListView.setAdapter(customAdapter);
         customListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int index = arrayList.indexOf(myFitnessList.get(i));
+
                 Bundle bundle = new Bundle();
-                bundle.putInt("Edit", i);
+                bundle.putInt("Edit", index);
 
                 Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
                 MainActivity.fragmentStack.push(currentFragment);

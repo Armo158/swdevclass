@@ -20,6 +20,7 @@ public class InfoAdapter extends InfoWindow.DefaultViewAdapter
     private String TextTitle;
     private String TextAddress;
     private String TextNumber;
+    private String Picture;
 
     public InfoAdapter(@NonNull Context context, ViewGroup parent)
     {
@@ -41,6 +42,7 @@ public class InfoAdapter extends InfoWindow.DefaultViewAdapter
         TextView txtTel = (TextView) view.findViewById(R.id.txttel);
 
         txtTitle.setText(TextTitle);
+
         imagePoint.setImageResource(R.drawable.ic_baseline_account_balance_24);
         txtAddr.setText(TextAddress);
         txtTel.setText(TextNumber);
@@ -56,6 +58,8 @@ public class InfoAdapter extends InfoWindow.DefaultViewAdapter
     }
 
     public void setTextNumber(String textNumber) {
-        TextNumber = textNumber;
+        this.TextNumber = textNumber;
     }
+
+    public void setPicture(String picture){this.Picture = picture;}
 }

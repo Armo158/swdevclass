@@ -61,12 +61,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_fragment1:
+                        fragmentStack.clear();
                         fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
                         break;
                     case R.id.item_fragment2:
+                        fragmentStack.clear();
                         fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_List()).commit();
                         break;
                     case R.id.item_fragment3:
+                        fragmentStack.clear();
                         fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Login()).commit();
                         break;
                 }
@@ -90,30 +93,4 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-
-
-    /*
-    public interface OnBackPressedListener{
-        void onBackPressed();
-    }
-
-    long backKeyPressedTime;
-
-    public void onBackPressed(){
-        if(System.currentTimeMillis() >backKeyPressedTime+2000){
-            backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(getApplicationContext(), "두번 누르면 앱을 종료합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else{
-            finish();
-        }
-    }
-    public void onResume(){
-        super.onResume();
-
-
-    }
-    */
 }

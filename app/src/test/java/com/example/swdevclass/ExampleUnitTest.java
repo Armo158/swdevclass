@@ -54,7 +54,7 @@ public class ExampleUnitTest{
         FitnessCenter fitnessCenter1 = fitnessArrayListControl.getFitnessCenter(0);
         assertEquals(fitnessCenter, fitnessCenter1);
     }
-    @Test
+    /*@Test
     public void ImageSlider_isCorrect(){//이미지 슬라이더 어뎁터
         String[] images = new String[] {
                 "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",

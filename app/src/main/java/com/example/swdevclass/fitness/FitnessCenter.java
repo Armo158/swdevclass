@@ -1,5 +1,7 @@
 package com.example.swdevclass.fitness;
 
+import java.util.ArrayList;
+
 public class FitnessCenter {
     private double latitude;
     private double longitude;
@@ -11,11 +13,14 @@ public class FitnessCenter {
     private String name;
     private String event;
     private String address;
+    private ArrayList<String> picture;
 
 
-    public FitnessCenter(){}
+    public FitnessCenter(){
+        picture = new ArrayList<>();
+    }
     public FitnessCenter(double latitude, double longitude, String manager, String phonenumber, String price, String etc, String time,
-                  String name, String event, String address){
+                  String name, String event, String address, ArrayList<String> picture){
         this.latitude = latitude;
         this.longitude = longitude;
         this.manager = manager;
@@ -26,6 +31,7 @@ public class FitnessCenter {
         this.name = name;
         this.event = event;
         this.address = address;
+        this.picture = picture;
     }
     public void editFitnessCenter(String address, String phonenumber, String price, String time, String event, String etc){
         this.address = address; this.phonenumber = phonenumber;
@@ -109,4 +115,8 @@ public class FitnessCenter {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public ArrayList<String> getPicture() { return picture; }
+
+    public void setPicture(ArrayList<String> picture) { this.picture = picture; }
 }
