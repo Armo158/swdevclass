@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,9 @@ public class Fragment_Login extends Fragment{
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private SignInButton si_b;
+    private Button btn_logout;
     private View v;
+    private FirebaseUser user;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public class Fragment_Login extends Fragment{
         v = inflater.inflate(R.layout.fragment_login, container, false);
         TextView tvContents = (TextView)v.findViewById(R.id.tv_contents);
         si_b = v.findViewById(R.id.si_b);
+        btn_logout = v.findViewById(R.id.btn_LogOut);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +82,13 @@ public class Fragment_Login extends Fragment{
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signOut();
             }
         });
 
@@ -117,7 +128,7 @@ public class Fragment_Login extends Fragment{
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             //Snackbar.make(v.findViewById(R.id.layout_main), "Authentication Successed.", Snackbar.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -128,8 +139,20 @@ public class Fragment_Login extends Fragment{
     }
 
     private void updateUI(FirebaseUser user) { //update ui code here
-        if (user != null) {
+        if (user != null && ((MainActivity)getActivity()).fitnessArrayListControl.isExistEmail(user.getEmail())) {
             ((MainActivity)getActivity()).replaceFragment(Fragment_MyFitnessList.newInstance());
         }
+        else{
+            Toast.makeText(getContext(), "You can't access this section.",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void signOut(){
+        mGoogleSignInClient.signOut().addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(getContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

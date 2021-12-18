@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.swdevclass.adapter.InfoAdapter;
 import com.example.swdevclass.fitness.FitnessCenter;
 import com.example.swdevclass.MainActivity;
 import com.example.swdevclass.R;
@@ -42,6 +43,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
     private ArrayList<Marker> markers = new ArrayList<>();
     private LocationButtonView locationButtonView;
     CameraPosition cameraPosition;
+    private ViewGroup rootView;
 
     public Fragment_Map(){}
 
@@ -87,7 +89,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_map,
+        rootView = (ViewGroup) inflater.inflate(R.layout.fragment_map,
                 container, false);
 
         mapView = (MapView) rootView.findViewById(R.id.navermap);
@@ -112,12 +114,11 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         //마커 초기화
 
 
-        markers.clear();;
+        markers.clear();
         //마커 값 설정
         for(FitnessCenter fitnessCenter: arrayList){
             Marker marker = new Marker();
             marker.setPosition(new LatLng(fitnessCenter.getLatitude(), fitnessCenter.getLongitude()));
-            marker.setTag(fitnessCenter.getName());
             markers.add(marker);
         }
         //마커 지도에 표시
@@ -126,19 +127,18 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         }
 
         InfoWindow infoWindow = new InfoWindow();
-        infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getActivity()) {
-            @NonNull
-            @Override
-            public CharSequence getText(@NonNull InfoWindow infoWindow) {
-                // 정보 창이 열린 마커의 tag를 텍스트로 노출하도록 반환
-                return (CharSequence) infoWindow.getMarker().getTag();
-            }
-        });
-        // 지도를 클릭하면 정보0 창을 닫음
+        InfoAdapter infoAdapter = new InfoAdapter(getContext(), rootView);
+        infoWindow.setAdapter(infoAdapter);
+        // 지도를 클릭하면 정보창을 닫음
         naverMap.setOnMapClickListener((coord, point) -> infoWindow.close());
         //marker 클릭시 요약창 띄우기
        for(Marker marker: markers) {
             marker.setOnClickListener(overlay -> {
+                int a = markers.indexOf(marker);
+                FitnessCenter fitnessCenter = arrayList.get(a);
+                infoAdapter.setTextAddress(fitnessCenter.getAddress());
+                infoAdapter.setTextNumber(fitnessCenter.getPhonenumber());
+                infoAdapter.setTextTitle(fitnessCenter.getName());
                 infoWindow.open(marker);
                 infoWindow.setOnClickListener(new Overlay.OnClickListener() {
                     @Override
@@ -146,6 +146,10 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
                         int a = markers.indexOf(marker);
                         Bundle bundle = new Bundle();
                         bundle.putInt("MoreInfo", a);
+
+                        Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.navermap);
+                        MainActivity.fragmentStack.push(currentFragment);
+
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         Fragment_MoreInfo fragment_moreInfo = new Fragment_MoreInfo();
                         fragment_moreInfo.setArguments(bundle);

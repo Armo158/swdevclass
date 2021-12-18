@@ -7,10 +7,13 @@
         <entry key="..\:/Users/azurp/Desktop/swdevclass/swdevclass/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/bg_fading_edge.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_balance_24.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2972222222222222" />
+        <entry key="app/src/main/res/drawable/ic_phone_24.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/drawable/ic_pin_drop_24.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_aft_login.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.1" />
@@ -26,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/fragment_more_info.xml" value="0.2164855072463768" />
+        <entry key="app/src/main/res/layout/info_window.xml" value="0.16927083333333334" />
         <entry key="app/src/main/res/layout/item_slider.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/row_item.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/menu/btm_nav.xml" value="0.22395833333333334" />

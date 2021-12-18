@@ -23,26 +23,34 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     //bottom Navigation view
     public FitnessArrayListControl fitnessArrayListControl;
     BottomNavigationView bottomNavigationView;
     private long lastTimeBackPressed; //onbackpressed와 관련
-
     private Thread splashThread;
+    public static Stack<Fragment> fragmentStack;
+    public static FragmentManager fragmentManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //fragment 관련
+
+        fragmentStack = new Stack<>();
+        fragmentManager = getSupportFragmentManager();
 
         //db관련
         fitnessArrayListControl = new FitnessArrayListControl();
         if(!fitnessArrayListControl.setArrayListtoDB()){
             Toast.makeText(getApplicationContext(), "Data failed", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
+            fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
         }
+
+        fitnessArrayListControl.setLoginReftoDB();
 
         //FrameLayout에 fragment.xml 띄우기
 
@@ -53,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_fragment1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
+                        fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
                         break;
                     case R.id.item_fragment2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment_List()).commit();
+                        fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_List()).commit();
                         break;
                     case R.id.item_fragment3:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new Fragment_Login()).commit();
+                        fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Login()).commit();
                         break;
                 }
                 return true;
@@ -67,9 +75,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    //프래그먼트 전환
+    //프래그먼트 전환//fragmentmanager 중복됨
     public void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.layout_main, fragment).commit();
     }/*

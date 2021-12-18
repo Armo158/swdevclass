@@ -16,14 +16,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FitnessArrayListControl {
     private ArrayList<FitnessCenter> arrayList;
+    private ArrayList<String> manager;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private DatabaseReference managerRef;
+    private DatabaseReference loginRef;
 
     FitnessArrayListControl(){
         arrayList = new ArrayList<>();
@@ -33,7 +35,6 @@ public class FitnessArrayListControl {
     public boolean setArrayListtoDB(){
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("fitness"); //DB table
-        managerRef = database.getReference("manger");
 
         final boolean[] a = new boolean[1];
 
@@ -73,6 +74,41 @@ public class FitnessArrayListControl {
     public void setDBFitnessValue(){
         myRef.setValue(arrayList);
         return;
+    }
+
+    //email 비교
+    public void setLoginReftoDB(){
+        manager = new ArrayList<>();
+        loginRef = database.getReference("manager");
+
+        loginRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for(DataSnapshot snapshot: datasnapshot.getChildren()){
+                    String email = snapshot.getValue(String.class);
+                    manager.add(email);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void setEmail(String email){
+        manager.add(email);
+        setEmailtoDB();
+    }
+    public String getEmail(int i){
+        return manager.get(i);
+    }
+    public boolean isExistEmail(String email){
+        return manager.contains(email);
+    }
+    public void setEmailtoDB(){
+        loginRef.setValue(manager);
     }
 
 }
