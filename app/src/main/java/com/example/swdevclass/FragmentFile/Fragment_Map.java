@@ -18,7 +18,9 @@ import com.example.swdevclass.fitness.FitnessCenter;
 import com.example.swdevclass.MainActivity;
 import com.example.swdevclass.R;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.MapView;
@@ -65,7 +67,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         //카메라 포지션
         cameraPosition = new CameraPosition(
                 new LatLng(35.154755, 128.105026), // 대상 지점
-                14
+                16
         );
 
         NaverMapOptions options = new NaverMapOptions()
@@ -111,6 +113,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         uiSettings.setLocationButtonEnabled(true);
 
         naverMap.setCameraPosition(cameraPosition);
+        final CameraUpdate[] cameraUpdate = new CameraUpdate[1];
         //마커 초기화
 
 
@@ -134,6 +137,12 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         //marker 클릭시 요약창 띄우기
        for(Marker marker: markers) {
             marker.setOnClickListener(overlay -> {
+
+                cameraUpdate[0] = CameraUpdate.scrollAndZoomTo(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 16)
+                                    .animate(CameraAnimation.Linear);
+                naverMap.moveCamera(cameraUpdate[0]);
+
+
                 int a = markers.indexOf(marker);
                 FitnessCenter fitnessCenter = arrayList.get(a);
                 infoAdapter.setTextAddress(fitnessCenter.getAddress());

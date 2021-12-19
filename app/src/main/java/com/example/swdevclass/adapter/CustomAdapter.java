@@ -57,8 +57,14 @@ public class CustomAdapter extends ArrayAdapter implements AdapterView.OnItemCli
         //viewHolder.iv_thumb = (ImageView) convertView.findViewById(R.id.imageView_thumb);
 
         final FitnessCenter fitness = (FitnessCenter) list.get(position);
+
+        String price = fitness.getPrice();
+        int a = price.indexOf("\n");
+        String substr = price.substring(0,a);
+
+
         viewHolder.tv_name.setText(fitness.getName());
-        viewHolder.tv_summary.setText(fitness.getEtc());
+        viewHolder.tv_summary.setText(substr);
         //Glide.with(context).load(fitness.getphoto_url).centerCrop().apply(new RequestOption().override(250, 350)).
         //into(viewHolder.iv_thumb);
         viewHolder.tv_name.setTag(fitness.getName());
