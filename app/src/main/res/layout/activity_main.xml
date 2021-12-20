@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#fff"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/btm_nav" />
 </FrameLayout>

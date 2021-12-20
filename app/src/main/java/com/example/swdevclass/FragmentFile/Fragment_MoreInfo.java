@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,7 +147,7 @@ public class Fragment_MoreInfo extends Fragment {
         });
 
 
-        FitnessCenter fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(a);
+        FitnessCenter fitnessCenter = ((MainActivity)getActivity()).DBControl.getFitnessCenter(a);
         picture = fitnessCenter.getPicture();
         
         sliderViewPager = (ViewPager2) view.findViewById(R.id.sliderViewPager);
@@ -163,6 +164,7 @@ public class Fragment_MoreInfo extends Fragment {
             }
         });
 
+
         TextView nameText = (TextView) view.findViewById(R.id.name);
         TextView addressText = (TextView) view.findViewById(R.id.addressText);
         TextView numberText = (TextView) view.findViewById(R.id.numberText);
@@ -170,6 +172,9 @@ public class Fragment_MoreInfo extends Fragment {
         TextView timeText = (TextView) view.findViewById(R.id.timeText);
         TextView eventText = (TextView) view.findViewById(R.id.eventText);
         TextView etcText = (TextView) view.findViewById(R.id.moreText);
+
+        numberText.setAutoLinkMask(Linkify.PHONE_NUMBERS);
+
         nameText.setText(fitnessCenter.getName());
         addressText.setText(fitnessCenter.getAddress());
         numberText.setText(fitnessCenter.getPhonenumber());

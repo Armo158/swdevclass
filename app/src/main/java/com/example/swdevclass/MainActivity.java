@@ -1,5 +1,11 @@
 package com.example.swdevclass;
 
+import static android.os.SystemClock.sleep;
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,22 +21,17 @@ import com.example.swdevclass.FragmentFile.Fragment_List;
 import com.example.swdevclass.FragmentFile.Fragment_Login;
 import com.example.swdevclass.fitness.FitnessCenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     //bottom Navigation view
-    public FitnessArrayListControl fitnessArrayListControl;
+    public DBControl DBControl;
     BottomNavigationView bottomNavigationView;
-    private long lastTimeBackPressed; //onbackpressed와 관련
-    private Thread splashThread;
     public static Stack<Fragment> fragmentStack;
     public static FragmentManager fragmentManager;
 
@@ -38,23 +39,29 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        ArrayList<FitnessCenter> fitnessCenterArrayList = (ArrayList<FitnessCenter>) intent.getSerializableExtra("Object");
+        DBControl = new DBControl();
+        DBControl.setArrayListtoDB();
+        DBControl.setArrayList(fitnessCenterArrayList);
+        DBControl.setLoginReftoDB();
+
         //fragment 관련
 
         fragmentStack = new Stack<>();
         fragmentManager = getSupportFragmentManager();
 
         //db관련
-        fitnessArrayListControl = new FitnessArrayListControl();
-        if(!fitnessArrayListControl.setArrayListtoDB()){
-            Toast.makeText(getApplicationContext(), "Data failed", Toast.LENGTH_SHORT).show();
-            fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
-        }
-
-        fitnessArrayListControl.setLoginReftoDB();
 
         //FrameLayout에 fragment.xml 띄우기
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
+
+        if(fragmentStack.isEmpty()) {
+            fragmentManager.beginTransaction().replace(R.id.layout_main, new Fragment_Map()).commit();
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -78,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     //프래그먼트 전환//fragmentmanager 중복됨
     public void replaceFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

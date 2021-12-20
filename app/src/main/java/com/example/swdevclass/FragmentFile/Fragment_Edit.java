@@ -1,6 +1,5 @@
 package com.example.swdevclass.FragmentFile;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -21,8 +20,6 @@ import com.example.swdevclass.MainActivity;
 import com.example.swdevclass.R;
 import com.example.swdevclass.adapter.ImageSliderAdapter;
 import com.example.swdevclass.fitness.FitnessCenter;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -69,7 +66,7 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         v = (ViewGroup)inflater.inflate(R.layout.fragment_edit, container, false);
         indexnum = getArguments().getInt("Editting");
-        fitnessCenter = ((MainActivity)getActivity()).fitnessArrayListControl.getFitnessCenter(indexnum);
+        fitnessCenter = ((MainActivity)getActivity()).DBControl.getFitnessCenter(indexnum);
         picture = fitnessCenter.getPicture();
 
         sliderViewPager = v.findViewById(R.id.sliderViewPager);
@@ -122,8 +119,8 @@ public class Fragment_Edit extends Fragment implements View.OnClickListener{
                         price_id.getText().toString(), time_id.getText().toString(), event_id.getText().toString(),
                         more_id.getText().toString());
 
-                ((MainActivity)getActivity()).fitnessArrayListControl.setFitnessCenter(fitnessCenter, indexnum);
-                ((MainActivity)getActivity()).fitnessArrayListControl.setDBFitnessValue();
+                ((MainActivity)getActivity()).DBControl.setFitnessCenter(fitnessCenter, indexnum);
+                ((MainActivity)getActivity()).DBControl.setDBFitnessValue();
                 Toast.makeText(v.getContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
 
                 ((MainActivity)getActivity()).onBackPressed();

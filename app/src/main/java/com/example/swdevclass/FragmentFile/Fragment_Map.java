@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.swdevclass.adapter.InfoAdapter;
 import com.example.swdevclass.fitness.FitnessCenter;
 import com.example.swdevclass.MainActivity;
@@ -35,6 +35,8 @@ import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.LocationButtonView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Fragment_Map extends Fragment implements OnMapReadyCallback{
@@ -67,7 +69,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         //카메라 포지션
         cameraPosition = new CameraPosition(
                 new LatLng(35.154755, 128.105026), // 대상 지점
-                16
+                14
         );
 
         NaverMapOptions options = new NaverMapOptions()
@@ -107,8 +109,6 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.None);
 
-        arrayList = ((MainActivity)getActivity()).fitnessArrayListControl.getArrayList();
-
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(true);
 
@@ -116,6 +116,7 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         final CameraUpdate[] cameraUpdate = new CameraUpdate[1];
         //마커 초기화
 
+        arrayList = ((MainActivity) getActivity()).DBControl.getArrayList();
 
         markers.clear();
         //마커 값 설정
@@ -137,14 +138,14 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback{
         //marker 클릭시 요약창 띄우기
        for(Marker marker: markers) {
             marker.setOnClickListener(overlay -> {
-
                 cameraUpdate[0] = CameraUpdate.scrollAndZoomTo(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude), 16)
                                     .animate(CameraAnimation.Linear);
                 naverMap.moveCamera(cameraUpdate[0]);
 
-
                 int a = markers.indexOf(marker);
                 FitnessCenter fitnessCenter = arrayList.get(a);
+
+                infoAdapter.setPicture(fitnessCenter.getPicture(0));
                 infoAdapter.setTextAddress(fitnessCenter.getAddress());
                 infoAdapter.setTextNumber(fitnessCenter.getPhonenumber());
                 infoAdapter.setTextTitle(fitnessCenter.getName());

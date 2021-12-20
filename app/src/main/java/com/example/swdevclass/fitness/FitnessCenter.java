@@ -1,8 +1,9 @@
 package com.example.swdevclass.fitness;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FitnessCenter {
+public class FitnessCenter implements Serializable {
     private double latitude;
     private double longitude;
     private String manager;
@@ -117,6 +118,8 @@ public class FitnessCenter {
     }
 
     public ArrayList<String> getPicture() { return picture; }
+
+    public String getPicture(int n){return picture.get(n);}
 
     public void setPicture(ArrayList<String> picture) { this.picture = picture; }
 }

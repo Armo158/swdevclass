@@ -2,6 +2,8 @@ package com.example.swdevclass.adapter;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.swdevclass.R;
 import com.naver.maps.map.overlay.InfoWindow;
+
+import java.util.ArrayList;
 
 public class InfoAdapter extends InfoWindow.DefaultViewAdapter
 {
@@ -43,12 +57,15 @@ public class InfoAdapter extends InfoWindow.DefaultViewAdapter
 
         txtTitle.setText(TextTitle);
 
-        imagePoint.setImageResource(R.drawable.ic_baseline_account_balance_24);
+
+
+        Glide.with(mContext).asBitmap().load(Picture).override(48,32).placeholder(R.drawable.error_image).into(imagePoint);
         txtAddr.setText(TextAddress);
         txtTel.setText(TextNumber);
 
         return view;
     }
+
     public void setTextTitle(String TextTitle){
         this.TextTitle = TextTitle;
     }

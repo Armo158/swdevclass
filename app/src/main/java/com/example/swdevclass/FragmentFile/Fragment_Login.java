@@ -140,7 +140,7 @@ public class Fragment_Login extends Fragment{
     }
 
     private void updateUI(FirebaseUser user) { //update ui code here
-        if (user != null && ((MainActivity)getActivity()).fitnessArrayListControl.isExistEmail(user.getEmail())) {
+        if (user != null && ((MainActivity)getActivity()).DBControl.isExistEmail(user.getEmail())) {
 
             Fragment currentFragment = MainActivity.fragmentManager.findFragmentById(R.id.layout_main);
             MainActivity.fragmentStack.push(currentFragment);
@@ -149,7 +149,7 @@ public class Fragment_Login extends Fragment{
             bundle.putString("User", user.getEmail());
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            Fragment_MyFitnessList  fragment_myFitnessList = new Fragment_MyFitnessList();
+            Fragment_MyFitnessList fragment_myFitnessList = new Fragment_MyFitnessList();
             fragment_myFitnessList.setArguments(bundle);
             transaction.replace(R.id.layout_main, fragment_myFitnessList);
             transaction.commit();

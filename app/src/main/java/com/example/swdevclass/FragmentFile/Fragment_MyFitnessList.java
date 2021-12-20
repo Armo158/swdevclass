@@ -16,7 +16,6 @@ import com.example.swdevclass.MainActivity;
 import com.example.swdevclass.R;
 import com.example.swdevclass.adapter.CustomAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Fragment_MyFitnessList extends Fragment{
@@ -39,7 +38,7 @@ public class Fragment_MyFitnessList extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).fitnessArrayListControl.getArrayList();
+        ArrayList<FitnessCenter> arrayList = ((MainActivity)getActivity()).DBControl.getArrayList();
         ArrayList<FitnessCenter> myFitnessList = new ArrayList<>();
 
         String user = getArguments().getString("User");

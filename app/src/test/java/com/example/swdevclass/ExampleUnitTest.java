@@ -4,22 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import android.Manifest;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-import androidx.test.core.app.ApplicationProvider;
-
-import com.example.swdevclass.FragmentFile.Fragment_Edit;
-import com.example.swdevclass.FragmentFile.Fragment_Map;
-import com.example.swdevclass.adapter.ImageSliderAdapter;
 import com.example.swdevclass.fitness.FitnessCenter;
-import com.google.firebase.FirebaseApp;
-import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.overlay.Marker;
-
-import java.util.ArrayList;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -29,7 +16,7 @@ import java.util.ArrayList;
 public class ExampleUnitTest{
 
     FitnessCenter fitnessCenter = new FitnessCenter();
-    FitnessArrayListControl fitnessArrayListControl;
+    DBControl DBControl;
     private Context mockContext;
 
     @Test
@@ -49,9 +36,9 @@ public class ExampleUnitTest{
 
     @Test
     public void fitnessCenter_isCorrect(){ //피트니스 클래스를 fitness arraylist control에 넣고 가져왔을 때 동일한 객체인지 비
-        fitnessArrayListControl = new FitnessArrayListControl();
-        fitnessArrayListControl.setFitnessCenter(fitnessCenter, 0);
-        FitnessCenter fitnessCenter1 = fitnessArrayListControl.getFitnessCenter(0);
+        DBControl = new DBControl();
+        DBControl.setFitnessCenter(fitnessCenter, 0);
+        FitnessCenter fitnessCenter1 = DBControl.getFitnessCenter(0);
         assertEquals(fitnessCenter, fitnessCenter1);
     }
     /*@Test
